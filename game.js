@@ -27,12 +27,14 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png',
     { frameWidth: 32, frameHeight: 48 }
     );
+    this.load.image('fon1', 'assets/fon.jpg');
 }
 
 function create ()
 {
-    this.add.image(1100, 500, 'sky');
-    this.add.image(1100, 500, 'star');
+    this.add.titleSprite(0, 0, worldWidth, 1080, 'fon1').setOrigin(0, 0);
+    //this.add.image(1100, 500, 'sky');
+    //this.add.image(1100, 500, 'star');
     var platforms;
 
     platforms = this.physics.add.staticGroup();
