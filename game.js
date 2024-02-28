@@ -39,7 +39,7 @@ function create ()
     var platforms;
 
     platforms = this.physics.add.staticGroup();
-    for(var x=0;x<worldWidth; x=x+500){
+    for(var x=0;x<worldWidth; x=x+450){
         console.log(x);
         platforms.create(x,1048,'ground').setOrigin(0,0).refreshBody();
     }
@@ -48,7 +48,7 @@ function create ()
     //platforms.create(50, 250, 'ground');
     //platforms.create(750, 220, 'ground');
 
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(1000, 450, 'dude');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
