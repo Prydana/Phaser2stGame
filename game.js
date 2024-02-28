@@ -17,6 +17,7 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+var worldWidth = 10000;
 
 function preload ()
 {
@@ -32,7 +33,7 @@ function preload ()
 
 function create ()
 {
-    this.add.titleSprite(0, 0, worldWidth, 1080, 'fon1').setOrigin(0, 0);
+    this.add.tileSprite(0, 0, worldWidth, 1080, 'fon1').setOrigin(0, 0);
     //this.add.image(1100, 500, 'sky');
     //this.add.image(1100, 500, 'star');
     var platforms;
