@@ -25,10 +25,13 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('bush', 'assets/bush.png');
+    this.load.image('stone', 'assets/stone.png');
+    this.load.image('tree', 'assets/tree.png');
     this.load.spritesheet('dude', 'assets/dude.png',
     { frameWidth: 32, frameHeight: 48 }
     );
-    this.load.image('fon1', 'assets/fon.jpg');
+    this.load.image('fon1', 'assets/fon.png');
 }
 
 function create ()
@@ -36,19 +39,36 @@ function create ()
     this.add.tileSprite(0, 0, worldWidth, 1080, 'fon1').setOrigin(0, 0);
     //this.add.image(1100, 500, 'sky');
     //this.add.image(1100, 500, 'star');
+    //platforms
     var platforms;
 
     platforms = this.physics.add.staticGroup();
-    for(var x=0;x<worldWidth; x=x+450){
+    for(var x=0;x<worldWidth; x=x+400){
         console.log(x);
         platforms.create(x,1048,'ground').setOrigin(0,0).refreshBody();
+    }
+   //trees
+    var tree;
+
+    tree = this.physics.add.staticGroup();
+    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
+        console.log(x);
+        tree.create(x,1048-301,'tree').setOrigin(0,0).refreshBody();
+    }
+    //bushes
+    var bush;
+
+    bush = this.physics.add.staticGroup();
+    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
+        console.log(x);
+        bush.create(x,1048-65,'bush').setOrigin(0,0).refreshBody();
     }
     //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     //platforms.create(600, 400, 'ground');
     //platforms.create(50, 250, 'ground');
     //platforms.create(750, 220, 'ground');
 
-    player = this.physics.add.sprite(1000, 450, 'dude');
+    player = this.physics.add.sprite(100, 450, 'dude');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
