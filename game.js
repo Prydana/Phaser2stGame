@@ -63,6 +63,14 @@ function create ()
         console.log(x);
         bush.create(x,1048-65,'bush').setOrigin(0,0).refreshBody();
     }
+    //stones
+    var stone;
+
+    stone = this.physics.add.staticGroup();
+    for(var x=1000;x<worldWidth; x=x+Phaser.Math.FloatBetween(1000,1100)){
+        console.log(x);
+       stone.create(x,1048-54,'stone').setOrigin(0,0).refreshBody();
+    }
     //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     //platforms.create(600, 400, 'ground');
     //platforms.create(50, 250, 'ground');
@@ -74,7 +82,7 @@ function create ()
     player.setCollideWorldBounds(true);
 
     this.cameras.main.setBounds(0,0,worldWidth,window.innerHeight);
-    this.physics.world.setBounds(0,0,worldWidth,window.innerHeight);
+    this.physics.world.setBounds(0,100,worldWidth,window.innerHeight);
     this.cameras.main.startFollow(player);
 
     this.anims.create({
