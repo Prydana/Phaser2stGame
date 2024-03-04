@@ -17,7 +17,7 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-var worldWidth = 10000;
+var worldWidth = 9600;
 
 function preload ()
 {
