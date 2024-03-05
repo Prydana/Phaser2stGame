@@ -53,7 +53,7 @@ function create ()
     tree = this.physics.add.staticGroup();
     for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
         console.log(x);
-        tree.create(x,1048,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).refreshBody();
+        tree.create(x,1048,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).setDepth().refreshBody();
     }
     //bushes
     var bush;
