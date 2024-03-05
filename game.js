@@ -21,17 +21,16 @@ var worldWidth = 9600;
 
 function preload ()
 {
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('fon1', 'assets/fon.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.image('bush', 'assets/bush.png');
     this.load.image('stone', 'assets/stone.png');
-    this.load.image('tree', 'assets/tree.png');
+    this.load.image('tree', 'assets/pinetree.png');
     this.load.spritesheet('dude', 'assets/dude.png',
     { frameWidth: 32, frameHeight: 48 }
     );
-    this.load.image('fon1', 'assets/fon.png');
 }
 
 function create ()
@@ -45,7 +44,7 @@ function create ()
     platforms = this.physics.add.staticGroup();
     for(var x=0;x<worldWidth; x=x+400){
         console.log(x);
-        platforms.create(x,1048,'ground').setOrigin(0,0).refreshBody();
+        platforms.create(x,1048,'ground').setOrigin(0,0).setDepth(1).refreshBody();
     }
    //trees
     var tree;
@@ -53,23 +52,24 @@ function create ()
     tree = this.physics.add.staticGroup();
     for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
         console.log(x);
-        tree.create(x,1048,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).setDepth().refreshBody();
+        tree.create(x,1048+10,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.1,0.4)).setDepth(0).refreshBody();
     }
+    //trees
     //bushes
     var bush;
 
     bush = this.physics.add.staticGroup();
-    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
+    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(600,800)){
         console.log(x);
-        bush.create(x,1048,'bush').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).refreshBody();
+        bush.create(x,1048,'bush').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.2,0.8)).setDepth(0).refreshBody();
     }
     //stones
     var stone;
 
     stone = this.physics.add.staticGroup();
-    for(var x=1000;x<worldWidth; x=x+Phaser.Math.FloatBetween(1000,1100)){
+    for(var x=1000;x<worldWidth; x=x+Phaser.Math.FloatBetween(500,700)){
         console.log(x);
-       stone.create(x,1048,'stone').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).refreshBody();
+       stone.create(x,1048,'stone').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.2,0.8)).setDepth(1).refreshBody();
     }
 
     player = this.physics.add.sprite(100, 450, 'dude');
