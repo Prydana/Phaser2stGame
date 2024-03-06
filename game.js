@@ -51,10 +51,12 @@ function create ()
     var skyground;
 
     skyground = this.physics.add.staticGroup();
-    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(400,500)){
-        var y = Phaser.Math.FloatBetween(128,128*4)
-        console.log(y);
-        platforms.create(y,1048-150,'sg_body').setOrigin(0,0).setScale(0.6).refreshBody();
+    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(400,600)){
+        var y = Phaser.Math.FloatBetween(128*6,128*7)
+        console.log(x,y);
+        skyground.create(x,y,'sg_start').setOrigin(0,0).setScale(1).refreshBody();
+        skyground.create(x+128,y,'sg_body').setOrigin(0,0).setScale(1).refreshBody();
+        skyground.create(x+256,y,'sg_end').setOrigin(0,0).setScale(1).refreshBody();
     }
    //trees
     var tree;
@@ -110,8 +112,9 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-    player.body.setGravityY(300);
+    player.body.setGravityY(200);
     this.physics.add.collider(player, platforms);
+    this.physics.add.collider(player, skyground);
 
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -127,6 +130,7 @@ function create ()
     
     });
     this.physics.add.collider(stars, platforms);
+    this.physics.add.collider(stars, skyground);
     this.physics.add.overlap(player, stars, collectStar, null, this);
     function collectStar (player, star)
 {
@@ -145,7 +149,7 @@ function create ()
 bombs = this.physics.add.group();
 
 this.physics.add.collider(bombs, platforms);
-
+this.physics.add.collider(bombs, skyground);
 this.physics.add.collider(player, bombs, hitBomb, null, this);
 function hitBomb (player, bomb)
 {
