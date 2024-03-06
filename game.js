@@ -53,7 +53,7 @@ function create ()
     tree = this.physics.add.staticGroup();
     for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(700,800)){
         console.log(x);
-        tree.create(x,1048+10,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).setDepth(0).refreshBody();
+        tree.create(x,1048+10,'tree').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.8,1)).setDepth(Phaser.Math.FloatBetween(0,10)).refreshBody();
     }
     //bushes
     var bush;
@@ -61,7 +61,7 @@ function create ()
     bush = this.physics.add.staticGroup();
     for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(600,700)){
         console.log(x);
-        bush.create(x,1048,'bush').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.4,0.6)).setDepth(0).refreshBody();
+        bush.create(x,1048,'bush').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.4,0.6)).setDepth(Phaser.Math.FloatBetween(0,10)).refreshBody();
     }
     //stones
     var stone;
@@ -69,13 +69,14 @@ function create ()
     stone = this.physics.add.staticGroup();
     for(var x=1000;x<worldWidth; x=x+Phaser.Math.FloatBetween(500,700)){
         console.log(x);
-       stone.create(x,1048,'stone').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.4,0.6)).setDepth(0.5).refreshBody();
+       stone.create(x,1048,'stone').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.4,0.6)).setDepth(Phaser.Math.FloatBetween(0,10)).refreshBody();
     }
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
+    player.setDepth(5)
 
     this.cameras.main.setBounds(0,0,worldWidth,window.innerHeight);
     this.physics.world.setBounds(0,100,worldWidth,window.innerHeight);
