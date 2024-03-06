@@ -21,7 +21,7 @@ var worldWidth = 9600;
 
 function preload ()
 {
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('fon', 'assets/fon.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
@@ -31,14 +31,14 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png',
     { frameWidth: 32, frameHeight: 48 }
     );
-    this.load.image('fon1', 'assets/fon.png');
+    this.load.image('sg_start', 'assets/skyground_start.png');
+    this.load.image('sg_body', 'assets/skyground_body.png');
+    this.load.image('sg_end', 'assets/skyground_end.png');
 }
 
 function create ()
 {
-    this.add.tileSprite(0, 0, worldWidth, 1080, 'fon1').setOrigin(0, 0);
-    //this.add.image(1100, 500, 'sky');
-    //this.add.image(1100, 500, 'star');
+    this.add.tileSprite(0, 0, worldWidth, 1080, 'fon').setOrigin(0, 0);
     //platforms
     var platforms;
 
@@ -46,6 +46,15 @@ function create ()
     for(var x=0;x<worldWidth; x=x+400){
         console.log(x);
         platforms.create(x,1048,'ground').setOrigin(0,0).refreshBody();
+    }
+    //skyground
+    var skyground;
+
+    skyground = this.physics.add.staticGroup();
+    for(var x=0;x<worldWidth; x=x+Phaser.Math.FloatBetween(400,500)){
+        var y = Phaser.Math.FloatBetween(128,128*4)
+        console.log(y);
+        platforms.create(y,1048-150,'sg_body').setOrigin(0,0).setScale(0.6).refreshBody();
     }
    //trees
     var tree;
