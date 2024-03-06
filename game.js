@@ -55,7 +55,11 @@ function create ()
         var y = Phaser.Math.FloatBetween(128*6,128*7)
         console.log(x,y);
         skyground.create(x,y,'sg_start').setOrigin(0,0).setScale(1).refreshBody();
-        skyground.create(x+128,y,'sg_body').setOrigin(0,0).setScale(1).refreshBody();
+        var i;
+        for(i=1; i<Phaser.Math.FloatBetween(1,5); i++){
+            skyground.create(x+128,y,'sg_body').setOrigin(0,0).setScale(1).refreshBody();
+        }
+        
         skyground.create(x+256,y,'sg_end').setOrigin(0,0).setScale(1).refreshBody();
     }
    //trees
