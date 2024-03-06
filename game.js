@@ -124,8 +124,8 @@ function create ()
 
     stars = this.physics.add.group({
         key: 'star',
-        repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
+        repeat: 99,
+        setXY: { x: 20, y: 0, stepX: 100 }
     });
     
     stars.children.iterate(function (child) {
@@ -152,7 +152,7 @@ function create ()
 }
 bombs = this.physics.add.group();
 
-this.physics.add.collider(bombs, platforms);
+/*this.physics.add.collider(bombs, platforms);
 this.physics.add.collider(bombs, skyground);
 this.physics.add.collider(player, bombs, hitBomb, null, this);
 function hitBomb (player, bomb)
@@ -166,7 +166,7 @@ function hitBomb (player, bomb)
     gameOver = true;
     gameOverText = this.add.text(200, 130, 'Game Over', { fontSize: '60px', fill: '#000' })
 
-}
+}*/
 function collectStar (player, star)
 {
     star.disableBody(true, true);
