@@ -136,16 +136,12 @@ function create ()
     this.physics.add.collider(stars, platforms);
     this.physics.add.collider(stars, skyground);
     this.physics.add.overlap(player, stars, collectStar, null, this);
-    function collectStar (player, star)
-{
-    star.disableBody(true, true);
-}
+
     var score = 0;
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     
-
-bombs = this.physics.add.group();
+    bombs = this.physics.add.group();
 
 /*this.physics.add.collider(bombs, platforms);
 this.physics.add.collider(bombs, skyground);
