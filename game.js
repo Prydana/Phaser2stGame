@@ -23,6 +23,7 @@ function preload ()
 {
     this.load.image('fon', 'assets/fon.png');
     this.load.image('ground', 'assets/platform.png');
+    this.load.image('heart', 'assets/heart.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.image('bush', 'assets/bush.png');
@@ -86,6 +87,14 @@ function create ()
         console.log(x);
        stone.create(x,1048,'stone').setOrigin(0,1).setScale(Phaser.Math.FloatBetween(0.4,0.6)).setDepth(Phaser.Math.FloatBetween(0,10)).refreshBody();
     }
+    //heart
+    var live
+
+    live = this.physics.add.staticGroup();
+    for(var x=1000;x<1920; x=x+200){
+        console.log(x);
+       stone.create(x,30,'heart').setOrigin(1,0).setScale(0.5).refreshBody();
+    }
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
@@ -139,7 +148,8 @@ function create ()
 
     var score = 0;
     var scoreText;
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    
     
     bombs = this.physics.add.group();
 
