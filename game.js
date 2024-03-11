@@ -151,7 +151,7 @@ function create ()
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
     
     
-    bombs = this.physics.add.group();
+   /* bombs = this.physics.add.group();
 
 /*this.physics.add.collider(bombs, platforms);
 this.physics.add.collider(bombs, skyground);
