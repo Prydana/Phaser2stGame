@@ -49,6 +49,7 @@ function create() {
     var platforms;
 
     platforms = this.physics.add.staticGroup();
+    
     for (var x = 0; x < worldWidth; x = x + 400) {
         console.log(x);
         platforms.create(x, 1048, 'ground')
@@ -60,6 +61,7 @@ function create() {
     var skyground;
 
     skyground = this.physics.add.staticGroup();
+    
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(400, 600)) {
         var y = Phaser.Math.FloatBetween(128 * 6, 128 * 7)
         console.log(x, y);
@@ -82,6 +84,7 @@ function create() {
     var tree;
 
     tree = this.physics.add.staticGroup();
+    
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(700, 800)) {
         console.log(x);
         tree.create(x, 1048 + 10, 'tree')
@@ -94,6 +97,7 @@ function create() {
     var bush;
 
     bush = this.physics.add.staticGroup();
+    
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(600, 700)) {
         console.log(x);
         bush.create(x, 1048, 'bush')
@@ -107,6 +111,7 @@ function create() {
     var stone;
 
     stone = this.physics.add.staticGroup();
+    
     for (var x = 1000; x < worldWidth; x = x + Phaser.Math.FloatBetween(500, 700)) {
         console.log(x);
         stone.create(x, 1048, 'stone')
@@ -150,6 +155,7 @@ function create() {
     this.physics.add.collider(player, skyground);
 
     cursors = this.input.keyboard.createCursorKeys();
+    
     //camera
     this.cameras.main.setBounds(0, 0, worldWidth, window.innerHeight);
     this.physics.world.setBounds(0, 0, worldWidth, window.innerHeight);
@@ -165,14 +171,12 @@ function create() {
         .setOrigin(0, 0)
         .setScrollFactor(0);
 
-
     //stars
     stars = this.physics.add.group({
         key: 'star',
         repeat: 99,
         setXY: { x: 20, y: 0, stepX: 100 }
     });
-
 
     stars.children.iterate(function (child) {
 
@@ -182,7 +186,6 @@ function create() {
     this.physics.add.collider(stars, platforms);
     this.physics.add.collider(stars, skyground);
     this.physics.add.overlap(player, stars, collectStar, null, this);
-
 
     //bombs
     bombs = this.physics.add.group({
@@ -199,8 +202,6 @@ function create() {
             .setVelocityY(Phaser.Math.FloatBetween(-500, 500))
             .setGravityY(500)
     });
-
-
 
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(bombs, skyground);
@@ -233,56 +234,57 @@ function update() {
         player.setVelocityY(450);
     }
 }
-//function for life
-function showLife(){
-    var lifeline = "Life"
-    
-    for(var i=0; i<life; i++ ) {
-        lifeLine ="❤"
-    }
-    return lifeline
-
-}
-
-//function for bombs
-function hitBomb(player, bomb) {
-    //this.physics.pause();
-
-    player.setTint(0xff0000);
-    life-= 1;
-    lifeText.setText(showLife());
-
-    player.anims.play('turn');
-    
-    if(life==0){
-        gameOver = true;
-        gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
-    }
-
-}
-
-//function for stars
-function collectStar(player, star) {
-    star.disableBody(true, true);
-
-    score += 10;
-    scoreText.setText('Score: ' + score);
-
-    if (stars.countActive(true) === 0) {
-        stars.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb
-            .setBounce(1)
-            .setCollideWorldBounds(true)
-            .setVelocity(Phaser.Math.Between(-200, 200), 20);
+    //function for life
+    function showLife(){
+        var lifeline = "Life"
+        
+        for(var i=0; i<life; i++ ) {
+            lifeLine ="❤"
+        }
+        return lifeline
 
     }
-}
+
+    //function for bombs
+    function hitBomb(player, bomb) {
+        //this.physics.pause();
+
+        player.setTint(0xff0000);
+        life-= 1;
+        lifeText.setText(showLife());
+
+        player.anims.play('turn');
+        
+        if(life==0){
+            gameOver = true;
+            gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
+        }
+
+    }
+
+    //function for stars
+    function collectStar(player, star) {
+        star.disableBody(true, true);
+
+        score += 10;
+        scoreText.setText('Score: ' + score);
+
+        if (stars.countActive(true) === 0) {
+            stars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+            var bomb = bombs.create(x, 16, 'bomb');
+            
+            bomb
+                .setBounce(1)
+                .setCollideWorldBounds(true)
+                .setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+        }
+    }
 
