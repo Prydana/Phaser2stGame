@@ -19,6 +19,7 @@ var config = {
 var game = new Phaser.Game(config);
 var worldWidth = config.width *5;
 var life = 5;
+var lifeText;
 var score = 0;
 var scoreText;
 
@@ -129,22 +130,27 @@ function create() {
     this.cameras.main.startFollow(player);
 
 
-    //heart
+    /*//heart
     var live;
 
     live = this.physics.add.staticGroup();
     for (var x = 1000; x < 1920; x = x + 200) {
         console.log(x);
         live.create(x, 30, 'heart').setOrigin(1, 0).setScale(0.5).setScrollFactor(0).refreshBody();
-    }
+    }*/
 
-
+    //score
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' })
+        .setOrigin(0, 0)
+        .setScrollFactor(0);
+    
+    //life
+    lifeText = this.add.text(1500, 16, showLife(), { fontSize: '32px', fill: '#000' })
         .setOrigin(0, 0)
         .setScrollFactor(0);
 
 
-    //
+    //stars
     stars = this.physics.add.group({
         key: 'star',
         repeat: 99,
@@ -162,7 +168,7 @@ function create() {
     this.physics.add.overlap(player, stars, collectStar, null, this);
 
 
-
+    //bombs
     bombs = this.physics.add.group({
         key: 'bomb',
         repeat: 10,
@@ -186,6 +192,7 @@ function create() {
 
 }
 function update() {
+    //keyboard
     if (cursors.left.isDown) {
         player.setVelocityX(-220);
 
@@ -205,22 +212,38 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down) {
         player.setVelocityY(-450);
     }
+    
+    if(cursors.down.isDown){
+        player.setVelocityY(450);
+    }
+}
+//function for life
+function showLife(){
+    var lifeline = "Life"
+    
+    for(var i=0; i<life; i++ ) {
+        lifeLine ="❤"
+    }
+    return lifeline
+
 }
 
-//
+//function for bombs
 function hitBomb(player, bomb) {
-    this.physics.pause();
+    //this.physics.pause();
 
     player.setTint(0xff0000);
+    life-= 1;
+    lifeText.setText(showLife());
 
     player.anims.play('turn');
 
-    gameOver = true;
-    gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
+    /*gameOver = true;
+    gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })*/
 
 }
 
-
+//function for stars
 function collectStar(player, star) {
     star.disableBody(true, true);
 
