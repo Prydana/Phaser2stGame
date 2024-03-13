@@ -129,16 +129,6 @@ function create() {
     this.physics.world.setBounds(0, 0, worldWidth, window.innerHeight);
     this.cameras.main.startFollow(player);
 
-
-    /*//heart
-    var live;
-
-    live = this.physics.add.staticGroup();
-    for (var x = 1000; x < 1920; x = x + 200) {
-        console.log(x);
-        live.create(x, 30, 'heart').setOrigin(1, 0).setScale(0.5).setScrollFactor(0).refreshBody();
-    }*/
-
     //score
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' })
         .setOrigin(0, 0)
@@ -237,9 +227,11 @@ function hitBomb(player, bomb) {
     lifeText.setText(showLife());
 
     player.anims.play('turn');
-
-    /*gameOver = true;
-    gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })*/
+    
+    if(life==0){
+        gameOver = true;
+        gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
+    }
 
 }
 
