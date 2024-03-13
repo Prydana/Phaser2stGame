@@ -41,15 +41,21 @@ function preload() {
 }
 
 function create() {
-    this.add.tileSprite(0, 0, worldWidth, 1080, 'fon').setOrigin(0, 0);
+    //background
+    this.add.tileSprite(0, 0, worldWidth, 1080, 'fon')
+        .setOrigin(0, 0);
+
     //platforms
     var platforms;
 
     platforms = this.physics.add.staticGroup();
     for (var x = 0; x < worldWidth; x = x + 400) {
         console.log(x);
-        platforms.create(x, 1048, 'ground').setOrigin(0, 0).refreshBody();
+        platforms.create(x, 1048, 'ground')
+            .setOrigin(0, 0)
+            .refreshBody();
     }
+
     //skyground
     var skyground;
 
@@ -57,21 +63,32 @@ function create() {
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(400, 600)) {
         var y = Phaser.Math.FloatBetween(128 * 6, 128 * 7)
         console.log(x, y);
-        skyground.create(x, y, 'sg_start').setOrigin(0, 0).refreshBody();
-        var i;
-        for (i = 1; i < Phaser.Math.FloatBetween(1, 5); i++) {
-            skyground.create(x + 128, y, 'sg_body').setOrigin(0, 0).refreshBody();
+        skyground.create(x, y, 'sg_start')
+            .setOrigin(0, 0)
+            .refreshBody();
+
+        for (var i = 1; i < Phaser.Math.FloatBetween(1, 5); i++) {
+            skyground.create(x + 128, y, 'sg_body')
+                .setOrigin(0, 0)
+                .refreshBody();
         }
 
-        skyground.create(x + 256, y, 'sg_end').setOrigin(0, 0).refreshBody();
+        skyground.create(x + 256, y, 'sg_end')
+            .setOrigin(0, 0)
+            .refreshBody();
     }
+
     //trees
     var tree;
 
     tree = this.physics.add.staticGroup();
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(700, 800)) {
         console.log(x);
-        tree.create(x, 1048 + 10, 'tree').setOrigin(0, 1).setScale(Phaser.Math.FloatBetween(0.8, 1)).setDepth(Phaser.Math.FloatBetween(0, 10)).refreshBody();
+        tree.create(x, 1048 + 10, 'tree')
+            .setOrigin(0, 1)
+            .setScale(Phaser.Math.FloatBetween(0.8, 1))
+            .setDepth(Phaser.Math.FloatBetween(0, 10))
+            .refreshBody();
     }
     //bushes
     var bush;
@@ -79,26 +96,33 @@ function create() {
     bush = this.physics.add.staticGroup();
     for (var x = 0; x < worldWidth; x = x + Phaser.Math.FloatBetween(600, 700)) {
         console.log(x);
-        bush.create(x, 1048, 'bush').setOrigin(0, 1).setScale(Phaser.Math.FloatBetween(0.4, 0.6)).setDepth(Phaser.Math.FloatBetween(0, 10)).refreshBody();
+        bush.create(x, 1048, 'bush')
+            .setOrigin(0, 1)
+            .setScale(Phaser.Math.FloatBetween(0.4, 0.6))
+            .setDepth(Phaser.Math.FloatBetween(0, 10))
+            .refreshBody();
     }
+
     //stones
     var stone;
 
     stone = this.physics.add.staticGroup();
     for (var x = 1000; x < worldWidth; x = x + Phaser.Math.FloatBetween(500, 700)) {
         console.log(x);
-        stone.create(x, 1048, 'stone').setOrigin(0, 1).setScale(Phaser.Math.FloatBetween(0.4, 0.6)).setDepth(Phaser.Math.FloatBetween(0, 10)).refreshBody();
+        stone.create(x, 1048, 'stone')
+            .setOrigin(0, 1)
+            .setScale(Phaser.Math.FloatBetween(0.4, 0.6))
+            .setDepth(Phaser.Math.FloatBetween(0, 10))
+            .refreshBody();
     }
-
 
     //player
     player = this.physics.add.sprite(100, 450, 'dude');
 
-    player.setBounce(0.2);
-    player.setCollideWorldBounds(true);
-    player.setDepth(5)
-
-
+    player
+        .setBounce(0.2)
+        .setCollideWorldBounds(true)
+        .setDepth(5)
 
     this.anims.create({
         key: 'left',
@@ -119,12 +143,14 @@ function create() {
         frameRate: 10,
         repeat: -1
     });
-    player.body.setGravityY(200);
+
+    player.body
+        .setGravityY(200);
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, skyground);
 
     cursors = this.input.keyboard.createCursorKeys();
-    //
+    //camera
     this.cameras.main.setBounds(0, 0, worldWidth, window.innerHeight);
     this.physics.world.setBounds(0, 0, worldWidth, window.innerHeight);
     this.cameras.main.startFollow(player);
@@ -252,9 +278,10 @@ function collectStar(player, star) {
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
         var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb
+            .setBounce(1)
+            .setCollideWorldBounds(true)
+            .setVelocity(Phaser.Math.Between(-200, 200), 20);
 
     }
 }
