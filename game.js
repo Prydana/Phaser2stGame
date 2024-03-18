@@ -190,7 +190,7 @@ function create() {
     //bombs
     bombs = this.physics.add.group({
         key: 'bomb',
-        repeat: 4,
+        repeat: 14,
         setXY: { x: 20, y: 0, stepX: 300 }
     });
     bombs.children.iterate(function (child) {
@@ -244,7 +244,7 @@ function update() {
 
     //function for bombs
     function hitBomb(player, bomb) {
-        life -= 1;
+        /*life -= 1;
         lifeText.setText(showLife());
         
         if(life==0){
@@ -252,7 +252,9 @@ function update() {
             gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
             player.setTint(0xff0000)
             player.anims.play('turn')
-        }
+        }*/
+        score-=10
+        scoreText.setText('Score: ' + score);
 
     }
 
