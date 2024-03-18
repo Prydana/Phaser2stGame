@@ -35,6 +35,9 @@ function preload() {
     this.load.spritesheet('dude', 'assets/dude.png',
         { frameWidth: 32, frameHeight: 48 }
     );
+    this.load.spritesheet('dude', 'assets/dude.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
     this.load.image('sg_start', 'assets/skyground_start.png');
     this.load.image('sg_body', 'assets/skyground_body.png');
     this.load.image('sg_end', 'assets/skyground_end.png');
