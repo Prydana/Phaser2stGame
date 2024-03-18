@@ -158,7 +158,7 @@ function create() {
     
     //camera
     this.cameras.main.setBounds(0, 0, worldWidth, window.innerHeight);
-    this.physics.world.setBounds(0, 0, worldWidth, window.innerHeight);
+    this.physics.world.setBounds(0, 100, worldWidth, window.innerHeight);
     this.cameras.main.startFollow(player);
 
     //score
@@ -190,7 +190,7 @@ function create() {
     //bombs
     bombs = this.physics.add.group({
         key: 'bomb',
-        repeat: 10,
+        repeat: 4,
         setXY: { x: 20, y: 0, stepX: 300 }
     });
     bombs.children.iterate(function (child) {
@@ -200,7 +200,6 @@ function create() {
             .setCollideWorldBounds(true)
             .setVelocityX(Phaser.Math.FloatBetween(-500, 500))
             .setVelocityY(Phaser.Math.FloatBetween(-500, 500))
-            .setGravityY(500)
     });
 
     this.physics.add.collider(bombs, platforms);
@@ -236,28 +235,23 @@ function update() {
 }
     //function for life
     function showLife(){
-        var lifeline = "Life"
-        
-        for(var i=0; i<life; i++ ) {
-            lifeLine ="❤"
-        }
-        return lifeline
-
+        var lifeLine = 'Life:'
+         for (var i = 0; i < life; i++) { 
+            lifeLine += '💕'
+        } 
+        return lifeLine 
     }
 
     //function for bombs
     function hitBomb(player, bomb) {
-        //this.physics.pause();
-
-        player.setTint(0xff0000);
-        life-= 1;
+        life -= 1;
         lifeText.setText(showLife());
-
-        player.anims.play('turn');
         
         if(life==0){
             gameOver = true;
             gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
+            player.setTint(0xff0000)
+            player.anims.play('turn')
         }
 
     }
@@ -287,4 +281,9 @@ function update() {
 
         }
     }
+    //reset
+    var resetButton = this.add.text(400, 450, 'reset').setInteractive();
+        resetButton.on('pointerdown', function () {      
+            refreshBody();  //в цій функції описати всі дії для перезавантаження     
+        });
 
