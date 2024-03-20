@@ -233,7 +233,7 @@ function create() {
 
 }
 function update() {
-    
+    //enemy
     //keyboard
     if (cursors.left.isDown) {
         player.setVelocityX(-220);
@@ -270,6 +270,7 @@ function update() {
 
     //function for bombs
     function hitBomb(player, bomb) {
+        bomb.disableBody(true, true);
         life -= 1;
         lifeText.setText(showLife());
         
@@ -299,14 +300,14 @@ function update() {
 
             });
 
-            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+            /*var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
             var bomb = bombs.create(x, 16, 'bomb');
             
             bomb
                 .setBounce(1)
                 .setCollideWorldBounds(true)
-                .setVelocity(Phaser.Math.Between(-200, 200), 20);
+                .setVelocity(Phaser.Math.Between(-200, 200), 20);*/
 
         }
     }
