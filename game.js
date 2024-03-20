@@ -92,7 +92,7 @@ function create() {
         console.log(x);
         tree.create(x, 1048 + 10, 'tree')
             .setOrigin(0, 1)
-            .setScale(Phaser.Math.FloatBetween(0.3, 0.5))
+            .setScale(Phaser.Math.FloatBetween(0.3, 0.))
             .setDepth(Phaser.Math.FloatBetween(0, 10))
             .refreshBody();
     }
@@ -289,5 +289,5 @@ function update() {
     //reset
     var resetButton = this.add.text(400, 450, 'reset').setInteractive();
         resetButton.on('pointerdown', function () {      
-            refreshBody();  //в цій функції описати всі дії для перезавантаження     
+            refreshBody(); 
         });
