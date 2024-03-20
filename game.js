@@ -173,7 +173,7 @@ function create() {
         .setVelocityX(Phaser.Math.FloatBetween(-500,500))
     })
 
-    this.physics.add.collider(enemy,platforms)
+    this.physics.add.collider(enemy,platforms);
     this.physics.add.collider(player,enemy,()=>{
         player.x = player.x = player.x +Phaser.Math.FloatBetween(-50,50)
         player.y = player.e = player.x +Phaser.Math.FloatBetween(200,400)
@@ -190,8 +190,6 @@ function create() {
         .setOrigin(0, 0)
         .setScrollFactor(0);
 
-    //Count enemy
-    enemyText=this.add.text(300, 16, "!", { fontSize: '32px', fill: '#000' })
     
     //life
     lifeText = this.add.text(1500, 16, showLife(), { fontSize: '32px', fill: '#000' })
@@ -235,6 +233,7 @@ function create() {
 
 }
 function update() {
+    
     //keyboard
     if (cursors.left.isDown) {
         player.setVelocityX(-220);
