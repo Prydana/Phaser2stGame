@@ -17,11 +17,9 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-var worldWidth = config.width *worldScreen;
-var worldScreen = 5
-var enemyScreen = worldScreen
-var enemy = 5
-var enemyText
+var worldWidth = config.width *5;
+var enemyScreen = 5
+var enemyText;
 var life = 5;
 var lifeText;
 var score = 0;
@@ -39,7 +37,7 @@ function preload() {
     this.load.spritesheet('dude', 'assets/dude.png',
         { frameWidth: 32, frameHeight: 48 }
     );
-    this.load.spritesheet('enemy', 'assets/enemy.png',
+    this.load.spritesheet('enemy', 'assets/noenemy.png',
         { frameWidth: 32, frameHeight: 48 }
     );
     this.load.image('sg_start', 'assets/skyground_start.png');
@@ -162,12 +160,12 @@ function create() {
     this.physics.add.collider(player, skyground);
 
     cursors = this.input.keyboard.createCursorKeys();
-    
+
     //enemy 
     enemy= this.physics.add.group({
         key:"enemy",
         repeat: enemyScreen,
-        setXY:{x:1920-232, y:1080-439, stepX: Phaser.Math.FloatBetween(300,500)}
+        setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(300,500)}
     })
     enemy.children.iterate(function(child){
         child
@@ -180,18 +178,20 @@ function create() {
         player.x = player.x = player.x +Phaser.Math.FloatBetween(-50,50)
         player.y = player.e = player.x +Phaser.Math.FloatBetween(200,400)
     })
+
     
     //camera
     this.cameras.main.setBounds(0, 0, worldWidth, window.innerHeight);
-    this.physics.world.setBounds(0, 0, worldWidth, window.innerHeight);
+    this.physics.world.setBounds(0, 100, worldWidth, window.innerHeight);
     this.cameras.main.startFollow(player);
 
     //score
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' })
         .setOrigin(0, 0)
         .setScrollFactor(0);
+
     //Count enemy
-    enemyText=this.add.text(300, 16, showTextSymbols("😝", enemyScreen), { fontSize: '32px', fill: '#000' })
+    enemyText=this.add.text(300, 16, "!", { fontSize: '32px', fill: '#000' })
     
     //life
     lifeText = this.add.text(1500, 16, showLife(), { fontSize: '32px', fill: '#000' })
@@ -277,8 +277,8 @@ function update() {
         if(life==0){
             gameOver = true;
             gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
-            player.setTint(0xff0000)
             this.physics.pause();
+            player.setTint(0xff0000)
             player.anims.play('turn')
         }
         /*score-=10
@@ -300,15 +300,15 @@ function update() {
 
             });
 
-            //var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-            /*var bomb = bombs.create(x, 16, 'bomb');
+            var bomb = bombs.create(x, 16, 'bomb');
             
             bomb
                 .setBounce(1)
                 .setCollideWorldBounds(true)
                 .setVelocity(Phaser.Math.Between(-200, 200), 20);
-*/
+
         }
     }
     //reset
