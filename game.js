@@ -94,7 +94,7 @@ function create() {
         console.log(x);
         tree.create(x, 1048 + 10, 'tree')
             .setOrigin(0, 1)
-            .setScale(Phaser.Math.FloatBetween(0.3, 0.8))
+            .setScale(Phaser.Math.FloatBetween(0.3, 0.6))
             .setDepth(Phaser.Math.FloatBetween(0, 10))
             .refreshBody();
     }
