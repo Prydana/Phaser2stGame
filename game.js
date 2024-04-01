@@ -166,15 +166,17 @@ function create() {
         setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
     })
     enemy.children.iterate(function(child){
+        //if(Math.random()<0.1) {
         child
         .setCollideWorldBounds(true)
         .setVelocityX(Phaser.Math.FloatBetween(-500,500))
+       // }
     })
 
     this.physics.add.collider(enemy,platforms);
     this.physics.add.collider(player,enemy,()=>{
         player.x = player.x = player.x +Phaser.Math.FloatBetween(-100,100)
-        player.y = player.e = player.x +Phaser.Math.FloatBetween(300,400)
+        player.y = player.y = player.y -Phaser.Math.FloatBetween(100,300)
     })
 
     
@@ -237,6 +239,9 @@ function create() {
 }
 function update() {
     //enemy
+    if(Math.abs(player.x-enemy.x)<600){
+        enemy.moveTo(player, player.x, player.y,300,1)
+    }
     //keyboard
     if (cursors.left.isDown) {
         player.setVelocityX(-220);
