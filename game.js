@@ -166,7 +166,7 @@ function create() {
         setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
     })
     enemy.children.iterate(function(child){
-        if(Math.random()<0.1) {
+        if(Math.random()<1) { //0.1 не працює
         child
         .setCollideWorldBounds(true)
         .setVelocityX(Phaser.Math.FloatBetween(-500,500))
