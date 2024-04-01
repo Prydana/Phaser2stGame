@@ -166,11 +166,11 @@ function create() {
         setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
     })
     enemy.children.iterate(function(child){
-        //if(Math.random()<0.1) {
+        if(Math.random()<0.1) {
         child
         .setCollideWorldBounds(true)
         .setVelocityX(Phaser.Math.FloatBetween(-500,500))
-       // }
+       }
     })
 
     this.physics.add.collider(enemy,platforms);
@@ -237,6 +237,7 @@ function create() {
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
 }
+
 function update() {
     //enemy
     if(Math.abs(player.x-enemy.x)<600){
@@ -307,16 +308,6 @@ function update() {
                 child.enableBody(true, child.x, 0, true, true);
 
             });
-
-            /*var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-            var bomb = bombs.create(x, 16, 'bomb');
-            
-            bomb
-                .setBounce(1)
-                .setCollideWorldBounds(true)
-                .setVelocity(Phaser.Math.Between(-200, 200), 20);*/
-
         }
     }
     //reset
