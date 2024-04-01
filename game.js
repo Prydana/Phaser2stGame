@@ -176,7 +176,7 @@ function create() {
     this.physics.add.collider(enemy,platforms);
     this.physics.add.collider(player,enemy,()=>{
         player.x = player.x = player.x +Phaser.Math.FloatBetween(-50,50)
-        player.y = player.e = player.x +Phaser.Math.FloatBetween(200,400)
+        player.y = player.e = player.x +Phaser.Math.FloatBetween(300,400)
     })
 
     
