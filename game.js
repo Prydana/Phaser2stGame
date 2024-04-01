@@ -18,8 +18,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 var worldWidth = config.width *5;
-var enemyScreen = 5
-var enemyText;
+var enemy = 5
 var life = 5;
 var lifeText;
 var score = 0;
@@ -164,8 +163,8 @@ function create() {
     //enemy 
     enemy= this.physics.add.group({
         key:"enemy",
-        repeat: enemyScreen,
-        setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(300,500)}
+        repeat: enemy,
+        setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
     })
     enemy.children.iterate(function(child){
         child
@@ -196,10 +195,10 @@ function create() {
         .setOrigin(0, 0)
         .setScrollFactor(0);
     
-    /*//life
-    enemyText = this.add.text(1500, 16, showTextSymbols(), { fontSize: '32px', fill: '#000' })
+    //enemy
+    enemyText = this.add.text(500, 16, 'Enemy:5', { fontSize: '32px', fill: '#000' })
         .setOrigin(0, 0)
-        .setScrollFactor(0);*/
+        .setScrollFactor(0);
 
     //stars
     stars = this.physics.add.group({
