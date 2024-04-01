@@ -286,9 +286,16 @@ function update() {
         if(life==0){
             gameOver = true;
             gameOverText = this.add.text(600, 500, 'Game Over', { fontSize: '100px', fill: '#000' })
+            .setScrollFactor(0);
             this.physics.pause();
             player.setTint(0xff0000)
             player.anims.play('turn')
+            var resetButton = this.add.text(600, 600, 'Restart', { fontSize: '50px', fill: '#000' })
+            .setInteractive()
+            .setScrollFactor(0);
+        resetButton.on('pointerdown', function () {      
+            location.reload(); 
+        });
         }
     }
 
@@ -308,7 +315,4 @@ function update() {
         }
     }
     //reset
-    var resetButton = this.add.text(400, 450, 'reset').setInteractive();
-        resetButton.on('pointerdown', function () {      
-            refreshBody(); 
-        });
+    
