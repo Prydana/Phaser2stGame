@@ -18,7 +18,6 @@ var config = {
 
 var game = new Phaser.Game(config);
 var worldWidth = config.width *5;
-var enemy = 5
 var life = 5;
 var lifeText;
 var score = 0;
@@ -163,7 +162,7 @@ function create() {
     //enemy 
     enemy= this.physics.add.group({
         key:"enemy",
-        repeat: enemy,
+        repeat: 5,
         setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
     })
     enemy.children.iterate(function(child){
