@@ -175,8 +175,8 @@ function create() {
 
     this.physics.add.collider(enemy,platforms);
     this.physics.add.collider(player,enemy,()=>{
-        player.x = player.x = player.x +Phaser.Math.FloatBetween(-100,100)
-        player.y = player.y = player.y -Phaser.Math.FloatBetween(100,300)
+        player.x = player.x = player.x + Phaser.Math.FloatBetween(-100,100)
+        player.y = player.y = player.y - Phaser.Math.FloatBetween(100,300)
     })
 
     
@@ -290,9 +290,6 @@ function update() {
             player.setTint(0xff0000)
             player.anims.play('turn')
         }
-        /*score-=10
-        scoreText.setText('Score: ' + score);*/
-
     }
 
     //function for stars
