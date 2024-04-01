@@ -94,7 +94,7 @@ function create() {
         console.log(x);
         tree.create(x, 1048 + 10, 'tree')
             .setOrigin(0, 1)
-            .setScale(Phaser.Math.FloatBetween(0.3, 0.))
+            .setScale(Phaser.Math.FloatBetween(0.3, 0.8))
             .setDepth(Phaser.Math.FloatBetween(0, 10))
             .refreshBody();
     }
@@ -195,6 +195,11 @@ function create() {
     lifeText = this.add.text(1500, 16, showLife(), { fontSize: '32px', fill: '#000' })
         .setOrigin(0, 0)
         .setScrollFactor(0);
+    
+    /*//life
+    enemyText = this.add.text(1500, 16, showTextSymbols(), { fontSize: '32px', fill: '#000' })
+        .setOrigin(0, 0)
+        .setScrollFactor(0);*/
 
     //stars
     stars = this.physics.add.group({
