@@ -293,9 +293,9 @@ function update() {
             var resetButton = this.add.text(600, 600, 'Restart', { fontSize: '50px', fill: '#000' })
             .setInteractive()
             .setScrollFactor(0);
-        resetButton.on('pointerdown', function () {      
-            location.reload(); 
-        });
+            resetButton.on('pointerdown', function () {      
+                location.reload(); 
+            });
         }
     }
 
@@ -314,5 +314,3 @@ function update() {
             });
         }
     }
-    //reset
-    
