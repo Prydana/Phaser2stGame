@@ -163,7 +163,7 @@ function create() {
     enemy= this.physics.add.group({
         key:"enemy",
         repeat: 15,
-        setXY:{x:1000, y:1080-48, stepX: Phaser.Math.FloatBetween(500,1000)}
+        setXY:{x:1000, y:1080-48, stepX: 800}
     })
     enemy.children.iterate(function(child){
         if(Math.random()<1) { //0.1 не працює
